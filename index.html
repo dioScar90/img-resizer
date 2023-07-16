@@ -7,7 +7,7 @@
 </head>
 
 <body>
-  <label for="imageInput">Select your image (2):</label>
+  <label for="imageInput">Select your image (3):</label>
   <input type="file" id="imageInput" accept="image/*">
   <canvas id="canvas" style="border: 1px solid black;"></canvas>
   <script>
@@ -26,11 +26,11 @@
                 let newWidth, newHeight, x, y;
 
                 if (imageAspectRatio > targetAspectRatio) {
-                    newHeight = canvas.height;
-                    newWidth = newHeight * imageAspectRatio;
-                } else {
                     newWidth = canvas.width;
                     newHeight = newWidth / imageAspectRatio;
+                } else {
+                    newHeight = canvas.height;
+                    newWidth = newHeight * imageAspectRatio;
                 }
 
                 x = (canvas.width - newWidth) / 2;
@@ -47,7 +47,7 @@
             };
 
             reader.readAsDataURL(file);
-        });
+          });
   </script>
 </body>
 
