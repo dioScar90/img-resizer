@@ -4,9 +4,10 @@
     <title>Image Resizer</title>
     <style>
         #canvas-container {
-            width: 100%;
-            height: 0;
-            padding-bottom: calc(9 / 16 * 100%); /* 16:9 aspect ratio */
+            height: 100vh;
+            width: calc(100vh * 9/16);
+            /* padding-bottom: calc(9 / 16 * 100%); */
+            /* 16:9 aspect ratio */
             position: relative;
         }
         #canvas {
@@ -20,7 +21,7 @@
     </style>
 </head>
 <body>
-    <label for="imageInput">Aqui (6):</label>
+    <label for="imageInput">Aqui (7):</label>
     <input type="file" id="imageInput" accept="image/*">
     <div id="canvas-container">
         <canvas id="canvas"></canvas>
