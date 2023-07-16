@@ -10,48 +10,43 @@
   <input type="file" id="imageInput" accept="image/*">
   <canvas id="canvas" style="border: 1px solid black;"></canvas>
   <script>
-    document.querySelector("#imageInput").addEventListener("change", function (event) {
-      const file = event.target.files[0];
-      if (!file) return;
+    document.getElementById("imageInput").addEventListener("change", function (event) {
+            const file = event.target.files[0];
+            if (!file) return;
 
-      const canvas = document.querySelector("#canvas");
-      const context = canvas.getContext("2d");
-      const image = new Image();
+            const canvas = document.getElementById("canvas");
+            const context = canvas.getContext("2d");
+            const image = new Image();
 
-      image.onload = function () {
-        const width = image.width;
-        const height = image.height;
-        const aspectRatio = 9 / 16;
-        const originalAspectRatio = width / height;
+            image.onload = function () {
+                const targetAspectRatio = 9 / 16;
+                const imageAspectRatio = image.width / image.height;
 
-        let newWidth, newHeight, x, y;
+                let newWidth, newHeight, x, y;
 
-        if (originalAspectRatio < aspectRatio) {
-          newWidth = width;
-          newHeight = width / aspectRatio;
-          x = 0;
-          y = (height - newHeight) / 2;
-        } else {
-          newWidth = height * aspectRatio;
-          newHeight = height;
-          x = (width - newWidth) / 2;
-          y = 0;
-        }
+                if (imageAspectRatio > targetAspectRatio) {
+                    newHeight = canvas.height;
+                    newWidth = newHeight * imageAspectRatio;
+                } else {
+                    newWidth = canvas.width;
+                    newHeight = newWidth / imageAspectRatio;
+                }
 
-        canvas.width = 9 * newHeight;
-        canvas.height = 16 * newHeight;
-        context.fillStyle = "black";
-        context.fillRect(0, 0, canvas.width, canvas.height);
-        context.drawImage(image, x, y, newWidth, newHeight, 0, 0, canvas.width, canvas.height);
-      };
+                x = (canvas.width - newWidth) / 2;
+                y = (canvas.height - newHeight) / 2;
 
-      const reader = new FileReader();
-      reader.onload = function (event) {
-        image.src = event.target.result;
-      };
+                context.fillStyle = "black";
+                context.fillRect(0, 0, canvas.width, canvas.height);
+                context.drawImage(image, x, y, newWidth, newHeight);
+            };
 
-      reader.readAsDataURL(file);
-    });
+            const reader = new FileReader();
+            reader.onload = function (event) {
+                image.src = event.target.result;
+            };
+
+            reader.readAsDataURL(file);
+        });
   </script>
 </body>
 
