@@ -7,7 +7,7 @@
 </head>
 
 <body>
-  <label for="imageInput">Select your image (4):</label>
+  <label for="imageInput">Select your image (5):</label>
   <input type="file" id="imageInput" accept="image/*">
   <canvas id="canvas" style="border: 1px solid black;"></canvas>
   <script>
@@ -20,7 +20,7 @@
             const image = new Image();
 
             image.onload = function () {
-                const targetAspectRatio = 9 / 16;
+                const targetAspectRatio = 16 / 9;
                 const imageAspectRatio = image.width / image.height;
 
                 let newWidth, newHeight, x, y;
