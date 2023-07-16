@@ -25,12 +25,12 @@
 
                 let newWidth, newHeight, x, y;
 
-                if (imageAspectRatio > targetAspectRatio) {
-                    newWidth = canvas.width;
-                    newHeight = newWidth / imageAspectRatio;
-                } else {
+                if (imageAspectRatio < targetAspectRatio) {
                     newHeight = canvas.height;
                     newWidth = newHeight * imageAspectRatio;
+                } else {
+                    newWidth = canvas.width;
+                    newHeight = newWidth / imageAspectRatio;
                 }
 
                 x = (canvas.width - newWidth) / 2;
@@ -47,7 +47,7 @@
             };
 
             reader.readAsDataURL(file);
-          });
+        });
   </script>
 </body>
 
