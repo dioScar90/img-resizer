@@ -1,31 +1,37 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-    <title>Image Resizer</title>
-    <style>
-        #canvas-container {
-            height: 100vh;
-            width: calc(100vh * 9/16);
-            /* padding-bottom: calc(9 / 16 * 100%); */
-            /* 16:9 aspect ratio */
-            position: relative;
-        }
-        #canvas {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            border: 1px solid black;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Image Resizer</title>
+
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
 </head>
+
 <body>
+  <div>
     <label for="imageInput">Aqui (7):</label>
     <input type="file" id="imageInput" accept="image/*">
-    <div id="canvas-container">
-        <canvas id="canvas"></canvas>
-    </div>
+  </div>
+
+  <div id="canvas-container">
+    <canvas id="canvas"></canvas>
+  </div>
+</body>
+
+</html>
+
+<!-- <!DOCTYPE html>
+<html>
+<head>
+    <title>Image Aspect Ratio Changer</title>
+</head>
+<body>
+    <input type="file" id="imageInput" accept="image/*">
+    <canvas id="canvas" style="border: 1px solid black;"></canvas>
     <script>
         document.getElementById("imageInput").addEventListener("change", function (event) {
             const file = event.target.files[0];
@@ -36,25 +42,31 @@
             const image = new Image();
 
             image.onload = function () {
-                const targetAspectRatio = 9 / 16;
+                const targetAspectRatio = 9 / 16  ;
                 const imageAspectRatio = image.width / image.height;
-
+                const imageIsLargerThenAspectRatio = imageAspectRatio > targetAspectRatio;
+                
                 let newWidth, newHeight, x, y;
-
-                if (imageAspectRatio < targetAspectRatio) {
-                    newHeight = canvas.height;
-                    newWidth = newHeight * imageAspectRatio;
-                } else {
+                
+                if (imageIsLargerThenAspectRatio) {
+                    // Image is wider than the 9:16 aspect ratio, add black space on the top and bottom
+                    console.log('seu corno manso, é paisagem')
                     newWidth = canvas.width;
                     newHeight = newWidth / imageAspectRatio;
+                    x = 0;
+                    y = (canvas.height - newHeight) / 2;
+                } else {
+                    // Image is taller than the 9:16 aspect ratio, add black space on the left and right
+                    console.log('aeee fila duma égua, é retrato já')
+                    newHeight = canvas.height;
+                    newWidth = newHeight * imageAspectRatio;
+                    x = (canvas.width - newWidth) / 2;
+                    y = 0;
                 }
 
-                x = (canvas.width - newWidth) / 2;
-                y = (canvas.height - newHeight) / 2;
-
                 context.fillStyle = "black";
-                context.fillRect(0, 0, canvas.width, canvas.height);
-                context.drawImage(image, x, y, newWidth, newHeight);
+                context.fillRect(0, 0, canvas.width, canvas.height); //x: number, y: number, w: number, h: number
+                context.drawImage(image, x, y, newWidth, newHeight); //image: CanvasImageSource, dx: number, dy: number, dw: number, dh: number
             };
 
             const reader = new FileReader();
@@ -66,4 +78,4 @@
         });
     </script>
 </body>
-</html>
+</html> -->

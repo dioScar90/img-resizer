@@ -1,0 +1,15 @@
+#canvas-container {
+  height: 70vh;
+  width: calc(70vh * 9/16);
+  /* padding-bottom: calc(70vh * 9 / 16); */
+  position: relative;
+}
+
+#canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 1px solid black;
+}
